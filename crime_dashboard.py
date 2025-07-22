@@ -78,7 +78,8 @@ else:
     """, unsafe_allow_html=True)
 
 # Base path
-base_path = "C:/Users/HP/Desktop/crime_pattern_anlyzer/crime_pattern_analyzer/crime_data"
+base_path = "crime_data"
+
 
 # Sidebar menu
 section = st.sidebar.selectbox("Select Analysis Section", [
@@ -96,7 +97,7 @@ selected_crime = st.sidebar.selectbox("Select a Crime Type", list(crime_preventi
 
 # ------------------------ 1. PROPERTY THEFT ------------------------
 if section == "Property Theft":
-    df = pd.read_csv(f"{base_path}/10_Property_stolen_and_recovered.csv")
+    df = pd.read_csv("crime_data/10_Property_stolen_and_recovered.csv")
     df.columns = [c.strip().replace(" ", "_") for c in df.columns]
     summary = df.groupby("Area_Name")["Cases_Property_Stolen"].sum().sort_values(ascending=False).head(10)
 
@@ -127,7 +128,7 @@ if section == "Property Theft":
 
 # ------------------------ 2. VICTIMS OF RAPE ------------------------
 elif section == "Victims of Rape":
-    df = pd.read_csv(f"{base_path}/20_Victims_of_rape.csv")
+    df = pd.read_csv("crime_data/20_Victims_of_rape.csv")
     df.columns = [c.strip().replace(" ", "_") for c in df.columns]
     summary = df.groupby("Area_Name")["Victims_of_Rape_Total"].sum().sort_values(ascending=False).head(10)
 
@@ -158,7 +159,7 @@ elif section == "Victims of Rape":
 
 # ------------------------ 3. MURDER VICTIMS ------------------------
 elif section == "Murder Victims":
-    df = pd.read_csv(f"{base_path}/32_Murder_victim_age_sex.csv")
+    df = pd.read_csv("crime_data/32_Murder_victim_age_sex.csv")
     df.columns = [c.strip().replace(" ", "_") for c in df.columns]
     summary = df.groupby("Year")["Victims_Total"].sum().sort_values(ascending=False)
 
@@ -188,7 +189,7 @@ elif section == "Murder Victims":
 
 # ------------------------ 4. KIDNAPPING PURPOSE ------------------------
 elif section == "Kidnapping Purpose":
-    df = pd.read_csv(f"{base_path}/39_Specific_purpose_of_kidnapping_and_abduction.csv")
+    df = pd.read_csv("crime_data/39_Specific_purpose_of_kidnapping_and_abduction.csv")
     df.columns = [c.strip().replace(" ", "_") for c in df.columns]
     summary = df.groupby("Group_Name")["K_A_Grand_Total"].sum().sort_values(ascending=False).head(10)
 
@@ -217,7 +218,7 @@ elif section == "Kidnapping Purpose":
 
 # ------------------------ 5. CRIMES AGAINST WOMEN ------------------------
 elif section == "Crimes Against Women":
-    df = pd.read_csv(f"{base_path}/42_Cases_under_crime_against_women.csv", on_bad_lines='skip')
+    df = pd.read_csv("crime_data/42_Cases_under_crime_against_women.csv", on_bad_lines='skip')
     df.columns = [c.strip().replace(" ", "_") for c in df.columns]
     summary = df.groupby("Area_Name")["Total_Cases_for_Trial"].sum().sort_values(ascending=False).head(10)
 
